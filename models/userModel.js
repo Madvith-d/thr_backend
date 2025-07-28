@@ -1,7 +1,7 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const userSchema = new mongoose.Schema({
-    name:{
+    name: {
         type: String,
         required: true
     },
@@ -24,12 +24,12 @@ const userSchema = new mongoose.Schema({
         type: String,
         default: 'https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y'
     },
-    followers:{
-        type:[String],
+    followers: {
+        type: [String],
         default: []
     },
-    following:{
-        type:[String],
+    following: {
+        type: [String],
         default: []
     },
     bio: {
@@ -40,4 +40,4 @@ const userSchema = new mongoose.Schema({
 
 const User = mongoose.model('User', userSchema);
 
-module.exports = User;
+export default User;

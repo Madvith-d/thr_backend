@@ -1,12 +1,12 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const postSchema = new mongoose.Schema({
-    postedBy:{
+    postedBy: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
         required: true
     },
-    content:{
+    content: {
         type: String,
         required: true,
         maxLength: 500
@@ -16,16 +16,16 @@ const postSchema = new mongoose.Schema({
         default: ''
     },
     likes: {
-        type:Number,
-        default: 0
+        type: [mongoose.Schema.Types.ObjectId],
+        default: []
     },
-    replies:[{
-        userID:{
+    replies: [{
+        userID: {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'User',
             required: true
         },
-        content:{
+        content: {
             type: String,
             required: true
         },
@@ -34,8 +34,8 @@ const postSchema = new mongoose.Schema({
             default: ''
         },
         likes: {
-            type:Number,
-            default: 0
+            type: [mongoose.Schema.Types.ObjectId],
+            default: []
         },
         userProfilePic: {
             type: String,
@@ -46,7 +46,7 @@ const postSchema = new mongoose.Schema({
             required: true
         }
     }]
-},{ timestamps: true });
+}, { timestamps: true });
 const Post = mongoose.model('Post', postSchema);
 
-module.exports = Post;
+export default Post;
