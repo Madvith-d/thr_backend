@@ -31,7 +31,7 @@ export const createPost = async (req, res) => {
 
 export const getPost = async (req, res) => {
     try {
-        const post = await postModel.findById(req.params.id);
+        const post = await postModel.findById(req.params.id).populate('postedBy');
         if (!post) {
             return res.status(404).json({ message: 'Post not found' });
         }
