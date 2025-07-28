@@ -161,10 +161,3 @@ GET /api/posts/all
 - All posts and replies can include images (as URLs).
 
 ---
-
-**Use this reference to generate a frontend that fully integrates with the backend API.  
-If you need more details on any endpoint or schema, just ask!**
-
----
-
-Let me know if you want to add or clarify anything else!
