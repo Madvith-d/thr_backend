@@ -1,6 +1,7 @@
 import express from 'express';
 const app = express();
 import dotenv from 'dotenv';
+import cors from 'cors';
 dotenv.config();
 const PORT = process.env.PORT
 import connectDB from './db/connectdb.js';
@@ -8,6 +9,10 @@ import cookieParser from 'cookie-parser';
 connectDB();
 import userRouter from './Routes/user.routes.js';
 import postsRouter from './Routes/posts.routes.js';
+app.use(cors({
+    origin:'http://localhost:8080',
+    credentials:true
+}))
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
