@@ -12,6 +12,7 @@ const generateTokenAndSetCookie = (userId, res) => {
     httpOnly: true,
     secure: true,
     sameSite: 'none',
+    Partitioned: true,
     maxAge: 15 * 24 * 60 * 60 * 1000, // 15 days in milliseconds
   });
 };
