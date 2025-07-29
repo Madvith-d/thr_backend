@@ -10,7 +10,7 @@ connectDB();
 import userRouter from './Routes/user.routes.js';
 import postsRouter from './Routes/posts.routes.js';
 app.use(cors({
-    origin:'https://whispr-api-core.vercel.app',
+    origin:'https://whispr-three-alpha.vercel.app',
     credentials:true
 }))
 app.use(express.json());
