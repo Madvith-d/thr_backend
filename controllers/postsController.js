@@ -84,17 +84,40 @@ export const replyToPost = async (req, res) => {
     try {
         const post = await postModel.findById(req.params.id);
         const user = await userModel.findById(userID);
+        
         if (!post) {
             return res.status(404).json({ message: 'Post not found' });
         }
+        
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+        
         let { content, image } = req.body;
         if (!image) {
             image = ''
         }
-        post.replies.push({ userID: userID, content, image, userProfilePic: user.profilePic, username: user.username });
+        
+        // Debug log to verify profile picture is being retrieved
+        console.log(`Reply from user ${user.username}: profilepic = ${user.profilepic}`);
+        
+        const newReply = {
+            userID: userID,
+            content,
+            image,
+            userProfilePic: user.profilepic || 'https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y',
+            username: user.username
+        };
+        
+        post.replies.push(newReply);
         await post.save();
-        res.status(200).json({ message: 'Reply added successfully' });
+        
+        res.status(200).json({ 
+            message: 'Reply added successfully',
+            reply: newReply
+        });
     } catch (error) {
+        console.error('Error in replyToPost:', error);
         res.status(500).json({ message: error.message });
     }
 }
